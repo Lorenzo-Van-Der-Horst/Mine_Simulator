@@ -1,0 +1,116 @@
+==============================
+         Main menu
+==============================
+
+
+Goud: 500
+RP: 0
+Totaal productie/sec: 1
+
+--- Beschikbare drills ---
+1. Iron Drill           | Prijs: 10       | Productie: +1/sec
+2. Copper Drill         | Prijs: 50       | Productie: +5/sec
+3. Silver Drill         | Prijs: 120      | Productie: +12/sec
+4. Gold Drill           | Prijs: 300      | Productie: +30/sec
+5. Platinum Drill       | Prijs: 700      | Productie: +70/sec
+6. Diamond Extractor    | Prijs: 1500     | Productie: +150/sec
+7. Ruby Extractor       | Prijs: 3000     | Productie: +300/sec
+8. Emerald Excavator    | Prijs: 6000     | Productie: +600/sec
+9. Sapphire Excavator   | Prijs: 12000    | Productie: +1200/sec
+10. Mythril Extractor   | Prijs: 25000    | Productie: +2500/sec
+
+
+--- Acties ---
+[A] Verdien goud handmatig (+1 goud)
+[B] Koop drill
+[C] Rebirth / Claim RP
+[D] Toon Rebirth-upgrades
+[E] Verlaat spel
+
+Kies een optie: _
+
+
+
+
+
+
+==============================
+    Verdien goud handmatig
+==============================
+
+Je koos: Verdien goud
+Je verdiende 1 goud!
+Goud: 42.001
+
+
+
+
+
+
+==============================
+        Drill buy menu
+==============================
+
+Je koos: Koop drill
+
+1. Iron Drill           | Prijs: 10       | Productie: +1/sec
+2. Copper Drill         | Prijs: 50       | Productie: +5/sec
+3. Silver Drill         | Prijs: 120      | Productie: +12/sec
+4. Gold Drill           | Prijs: 300      | Productie: +30/sec
+5. Platinum Drill       | Prijs: 700      | Productie: +70/sec
+6. Diamond Extractor    | Prijs: 1500     | Productie: +150/sec
+7. Ruby Extractor       | Prijs: 3000     | Productie: +300/sec
+8. Emerald Excavator    | Prijs: 6000     | Productie: +600/sec
+9. Sapphire Excavator   | Prijs: 12000    | Productie: +1200/sec
+10. Mythril Extractor   | Prijs: 25000    | Productie: +2500/sec
+
+Kies een drill om te kopen (typ nummer) of [B] om terug te keren: _
+
+
+
+
+
+==============================
+         Rebirth menu
+==============================
+Je koos: Rebirth / Claim RP
+
+Huidige RP: 2
+Goud: 42.001
+Geld nodig voor volgende RP: 40.000
+
+Gefeliciteerd! Je hebt 1 RP verdiend.
+Huidige RP: 3
+Goud is gereset naar 500
+Totaal productie/sec is verhoogd door je permanente upgrades!
+
+
+
+
+==============================
+         Rebirth buy menu
+==============================
+
+Je koos: Rebirth-upgrades
+
+--- Rebirth-upgrades (permanent) ---
+Huidige RP: 1
+
+1. Mining Efficiency    | Kosten: 1 RP    | Effect: +10% goud/sec
+2. Upgrade Discount     | Kosten: 1 RP    | Effect: -10% normale upgrade kosten
+3. Team Boost           | Kosten: 2 RP    | Effect: Start run met +1 Iron Drill
+4. Resource Multiplier  | Kosten: 3 RP    | Effect: +10% productie voor alle drills
+5. Auto Start Bonus     | Kosten: 3 RP    | Effect: Start run met +500 goud
+
+Kies een upgrade om te kopen (typ nummer) of [B] om terug te keren: _
+
+
+
+
+==============================
+        Leave game menu    
+==============================
+
+Je koos: Verlaat spel
+
+Weet je zeker dat je het spel wilt verlaten? (J/N): _
