@@ -30,8 +30,8 @@ while True:
         gpc = round(money_per_click(drills, rebirth_upgrades), 2)
 
     # Show status
-    print(f"Money: {g}  |  Money per click: {gpc}  |  RP: {RP}")
-    print("Drills:")
+    print(f"💵 Money: {g}  |  ⛏️  Money per click: {gpc}  |  💶 RP: {RP}")
+    print("🔧Drills:")
     for i, drill in enumerate(drills):
         price = drill_price(drill, rebirth_upgrades["Upgrade Discount"][0])
         price_display = int(price)
