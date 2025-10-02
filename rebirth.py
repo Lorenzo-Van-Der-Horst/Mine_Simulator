@@ -1,59 +1,59 @@
-# Rebirth-upgrades: [level, RP kost]
+# Rebirth upgrades: [level, RP cost]
 rebirth_upgrades = {
-    "Mining Efficiency": [0, 1],   # +10% geld per klik per level
-    "Upgrade Discount": [0, 1],    # -10% upgrade kosten per level
-    "Team Boost": [0, 2],          # +1 Iron Drill start per level
-    "Auto Start Bonus": [0, 3],    # +500 goud bij start per level
-    "ore_luck": [0, 5]      # +0.5% kans op zeldzame ertsen per level
+    "Mining Efficiency": [0, 1],   # +10% money per click per level
+    "Upgrade Discount": [0, 1],    # -10% upgrade cost per level
+    "Team Boost": [0, 2],          # +1 Iron Drill at start per level
+    "Auto Start Bonus": [0, 3],    # +500 gold at start per level
+    "Ore Luck": [0, 5]             # +0.5% chance for rare ores per level
 }
 
-# Beschrijving van effecten
+# Description of effects
 rebirth_effects = {
-    "Mining Efficiency": "+10% geld per klik per level",
-    "Upgrade Discount": "-10% upgrade kosten per level",
-    "Team Boost": "+1 Iron Drill start per level",
-    "Auto Start Bonus": "+500 goud bij start per level",
-    "ore_luck": "+0.5% kans op zeldzame ertsen per level"
+    "Mining Efficiency": "+10% money per click per level",
+    "Upgrade Discount": "-10% upgrade cost per level",
+    "Team Boost": "+1 Iron Drill at start per level",
+    "Auto Start Bonus": "+500 gold at start per level",
+    "Ore Luck": "+0.5% chance for rare ores per level"
 }
 
-# Basis RP-formule
-RP_basis = 10000
+# Base RP formula
+RP_base = 10000
 RP_factor = 2
 
 
-def geld_voor_volgende_RP(RP):
-    """Bereken hoeveel geld nodig is voor de volgende RP."""
-    return RP_basis * (RP_factor ** RP)
+def money_for_next_RP(RP):
+    """Calculate how much money is required for the next RP."""
+    return RP_base * (RP_factor ** RP)
 
 
-def uitgeven_RP(RP, geld, drills):
-    """Laat speler RP uitgeven aan upgrades."""
+def spend_RP(RP, money, drills):
+    """Let the player spend RP on upgrades."""
     while True:
-        print(f"\nJe hebt {RP} RP om uit te geven!")
+        print(f"\nYou have {RP} RP to spend!")
         print("Upgrades:")
         for i, key in enumerate(rebirth_upgrades):
-            lvl, kost = rebirth_upgrades[key]
+            lvl, cost = rebirth_upgrades[key]
             effect = rebirth_effects[key]
-            print(f"{i+1}) {key} | Level: {lvl} | Kost: {kost} RP | Effect: {effect}")
-        print("0) Terug naar spel")
+            print(f"{i+1}) {key} | Level: {lvl} | Cost: {cost} RP | Effect: {effect}")
+        print("0) Back to game")
 
-        keuze = input("Kies een upgrade om RP te spenderen (0-5): ")
-        if keuze == "0":
+        choice = input("Choose an upgrade to spend RP on (0-5): ")
+        if choice == "0":
             break
-        elif keuze in ["1","2","3","4","5"]:
-            i = int(keuze) - 1
+        elif choice in ["1", "2", "3", "4", "5"]:
+            i = int(choice) - 1
             key = list(rebirth_upgrades.keys())[i]
-            lvl, kost = rebirth_upgrades[key]
-            if RP >= kost:
-                RP -= kost
+            lvl, cost = rebirth_upgrades[key]
+            if RP >= cost:
+                RP -= cost
                 rebirth_upgrades[key][0] += 1
-                print(f"{key} verhoogd naar level {rebirth_upgrades[key][0]}! ({rebirth_effects[key]})\n")
+                print(f"{key} increased to level {rebirth_upgrades[key][0]}! ({rebirth_effects[key]})\n")
                 if key == "Auto Start Bonus":
-                    geld += 500
+                    money += 500
                 if key == "Team Boost":
                     drills[0][4] += 1
             else:
-                print("Niet genoeg RP!\n")
+                print("Not enough RP!\n")
         else:
-            print("Ongeldige keuze!\n")
-    return RP, geld, drills
+            print("Invalid choice!\n")
+    return RP, money, drills

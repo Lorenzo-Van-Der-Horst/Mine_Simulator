@@ -1,28 +1,29 @@
-def save_game(geld, RP, rebirth_upgrades, drills):
-    with open("save.txt", "w") as bestand:
-        bestand.write(str(geld) + "\n")
-        bestand.write(str(RP) + "\n")
+def save_game(money, RP, rebirth_upgrades, drills):
+    with open("save.txt", "w") as file:
+        file.write(str(money) + "\n")
+        file.write(str(RP) + "\n")
         for key in rebirth_upgrades:
-            bestand.write(str(rebirth_upgrades[key][0]) + "\n")
+            file.write(str(rebirth_upgrades[key][0]) + "\n")
         for drill in drills:
-            bestand.write(str(drill[4]) + "\n")
-            bestand.write(str(drill[5]) + "\n")
-    print("Game opgeslagen!\n")
+            file.write(str(drill[4]) + "\n")
+            file.write(str(drill[5]) + "\n")
+    print("Game saved!\n")
+
 
 def load_game(rebirth_upgrades, drills):
     try:
-        with open("save.txt", "r") as bestand:
-            regels = bestand.readlines()
-        geld = float(regels[0])
-        RP = int(regels[1])
+        with open("save.txt", "r") as file:
+            lines = file.readlines()
+        money = float(lines[0])
+        RP = int(lines[1])
         idx = 2
         for key in rebirth_upgrades:
-            rebirth_upgrades[key][0] = int(regels[idx]); idx += 1
+            rebirth_upgrades[key][0] = int(lines[idx]); idx += 1
         for drill in drills:
-            drill[4] = int(regels[idx]); idx += 1
-            drill[5] = float(regels[idx]); idx += 1
-        print("Game geladen!\n")
-        return geld, RP, rebirth_upgrades, drills
+            drill[4] = int(lines[idx]); idx += 1
+            drill[5] = float(lines[idx]); idx += 1
+        print("Game loaded!\n")
+        return money, RP, rebirth_upgrades, drills
     except:
-        print("Geen save bestand gevonden.\n")
+        print("No save file found.\n")
         return 0.0, 0, rebirth_upgrades, drills

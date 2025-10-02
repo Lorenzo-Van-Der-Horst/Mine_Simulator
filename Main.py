@@ -1,101 +1,102 @@
-from drills import drills, drill_prijs
-from rebirth import rebirth_upgrades, rebirth_effects, geld_voor_volgende_RP, uitgeven_RP
+from drills import drills, drill_price
+from rebirth import rebirth_upgrades, rebirth_effects, money_for_next_RP, spend_RP
 from save_load import save_game, load_game
-from money import geld_per_klik
+from money import money_per_click
 from special_ores import rare_ores
 
-# --- Beginwaarden ---
-geld = 0.0
+# --- Starting values ---
+money = 0.0
 RP = 0
 
-# Startspel bonussen (Auto Start Bonus + Team Boost)
-geld += 500 * rebirth_upgrades["Auto Start Bonus"][0]
+# Starting bonuses (Auto Start Bonus + Team Boost)
+money += 500 * rebirth_upgrades["Auto Start Bonus"][0]
 drills[0][4] += rebirth_upgrades["Team Boost"][0]
 
-print("Welkom bij Mine Simulator met Rebirth-upgrades!")
-print("Enter = geld verdienen, 1-5 = drills kopen, r=rebirth, u=RP upgraden, s=save, l=load, q=stop\n")
+print("Welcome to Mine Simulator with Rebirth upgrades!")
+print("Enter = earn money, 1-10 = buy drills, r=rebirth, u=spend RP, s=save, l=load, q=quit\n")
 
 # --- Game loop ---
 while True:
-    if geld == int(geld):
-        g = int(geld)
+    # Round money display
+    if money == int(money):
+        g = int(money)
     else:
-        g = round(geld, 2)
-    if geld_per_klik(drills, rebirth_upgrades) == int(geld_per_klik(drills, rebirth_upgrades)):
-        gpc = int(geld_per_klik(drills, rebirth_upgrades))
-    else:
-        gpc = round(geld_per_klik(drills, rebirth_upgrades), 2)
+        g = round(money, 2)
 
-    # status weergeven
-    print(f"Geld: {g}  |  Geld per klik: {gpc}  |  RP: {RP}")
+    # Round money per click display
+    if money_per_click(drills, rebirth_upgrades) == int(money_per_click(drills, rebirth_upgrades)):
+        gpc = int(money_per_click(drills, rebirth_upgrades))
+    else:
+        gpc = round(money_per_click(drills, rebirth_upgrades), 2)
+
+    # Show status
+    print(f"Money: {g}  |  Money per click: {gpc}  |  RP: {RP}")
     print("Drills:")
     for i, drill in enumerate(drills):
-        prijs = drill_prijs(drill, rebirth_upgrades["Upgrade Discount"][0])
-        prijs_display = int(prijs)
-        aantal_display = drill[4]
-        print(f"{i+1}) {drill[0]:<15} Aantal: {aantal_display}  Kost: {prijs_display}  +{drill[2]}/klik")
-    print(f"Volgende RP kost: {int(geld_voor_volgende_RP(RP))}\n")
+        price = drill_price(drill, rebirth_upgrades["Upgrade Discount"][0])
+        price_display = int(price)
+        amount_display = drill[4]
+        print(f"{i+1}) {drill[0]:<15} Amount: {amount_display}  Cost: {price_display}  +{drill[2]}/click")
+    print(f"Next RP requires: {int(money_for_next_RP(RP))}\n")
 
-    # user input
-    actie = input("Enter=klik, 1-10=drill, r=rebirth, u=RP upgraden, s=save, l=load, q=stop: ").lower()
+    # Player input
+    action = input("Enter=click, 1-10=drill, r=rebirth, u=spend RP, s=save, l=load, q=quit: ").lower()
 
-    # acties
-    if actie == "":
-        verdiend = geld_per_klik(drills, rebirth_upgrades)
-        geld += verdiend
-        print(f"Je verdiende {round(verdiend,2)} goud!\n")
+    # Actions
+    if action == "":
+        earned = money_per_click(drills, rebirth_upgrades)
+        money += earned
+        print(f"You earned {round(earned,2)} gold!\n")
 
         import random
         roll = random.randint(1, 1000)
         for ore in rare_ores:
             if roll in ore[2]:
-                print(f"Je vond {ore[0]}! Waarde: {ore[1]} goud.\n")
-                geld += ore[1]
-            
+                print(f"You found {ore[0]}! Value: {ore[1]} gold.\n")
+                money += ore[1]
                 break
-            
 
-    elif actie in ["1","2","3","4","5","6","7","8","9","10"]:
-        i = int(actie) - 1
-        prijs = drill_prijs(drills[i], rebirth_upgrades["Upgrade Discount"][0])
-        if geld >= prijs:
-            geld -= prijs
+    elif action in ["1","2","3","4","5","6","7","8","9","10"]:
+        i = int(action) - 1
+        price = drill_price(drills[i], rebirth_upgrades["Upgrade Discount"][0])
+        if money >= price:
+            money -= price
             drills[i][4] += 1
             drills[i][5] *= drills[i][3]
-            print(f"Je kocht een {drills[i][0]}!\n")
+            print(f"You bought a {drills[i][0]}!\n")
         else:
-            print("Niet genoeg geld!\n")
+            print("Not enough money!\n")
 
-    elif actie == "r":
-        if geld >= geld_voor_volgende_RP(RP):
+    elif action == "r":
+        if money >= money_for_next_RP(RP):
             RP += 1
-            geld = 0.0
+            money = 0.0
             for drill in drills:
                 drill[4] = 0
-                drill[5] = drill[1]  # reset naar startprijs
-            # Rebirth bonussen toepassen
-            geld += 500 * rebirth_upgrades["Auto Start Bonus"][0]
+                drill[5] = drill[1]  # reset to base price
+            # Apply rebirth bonuses
+            money += 500 * rebirth_upgrades["Auto Start Bonus"][0]
             drills[0][4] += rebirth_upgrades["Team Boost"][0]
             # Ore Luck level
-            ore_luck_level = rebirth_upgrades["ore_luck"][0]
-            extra_kans = int(ore_luck_level * 5)  # elk level = +0.5% kans
+            ore_luck_level = rebirth_upgrades["Ore Luck"][0]
+            extra_chance = int(ore_luck_level * 5)  # each level = +0.5% chance
 
-            print(f"Rebirth voltooid! RP={RP}\n")
+            print(f"Rebirth complete! RP={RP}\n")
         else:
-            print("Niet genoeg geld om te rebirthen!\n")
+            print("Not enough money to rebirth!\n")
 
-    elif actie == "u":
-        RP, geld, drills = uitgeven_RP(RP, geld, drills)
+    elif action == "u":
+        RP, money, drills = spend_RP(RP, money, drills)
         
-    elif actie == "s":
-        save_game(geld, RP, rebirth_upgrades, drills)
+    elif action == "s":
+        save_game(money, RP, rebirth_upgrades, drills)
 
-    elif actie == "l":
-        geld, RP, rebirth_upgrades, drills = load_game(rebirth_upgrades, drills)
+    elif action == "l":
+        money, RP, rebirth_upgrades, drills = load_game(rebirth_upgrades, drills)
 
-    elif actie == "q":
-        print("Game afgesloten!")
+    elif action == "q":
+        print("Game closed!")
         break
 
     else:
-        print("Ongeldige keuze!\n")
+        print("Invalid choice!\n")
