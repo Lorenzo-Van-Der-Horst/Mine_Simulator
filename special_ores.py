@@ -14,7 +14,4 @@ rare_ores = [
     ["Uranium Ore", 1000000, range(1000, 1001)] # 0.1% chance
 ]
 
-# For testing: show the chance of each ore
-if __name__ == "__main__":
-    for ore in rare_ores:
-        print(f"{ore[0]}: Value={ore[1]}, Chance={ore[2]}%")
+
