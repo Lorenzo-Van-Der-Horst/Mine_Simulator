@@ -1,19 +1,20 @@
 # special_ores.py
-# Elke ore heeft: [Naam, Waarde, Kansbereik van 1–1000]
+# Each ore has: [Name, Value, Chance range from 1–1000]
 
 rare_ores = [
-    ["Copper Ore", 1, range(1, 401)],        # 40% kans
-    ["Silver Ore", 5, range(401, 701)],      # 30% kans
-    ["Gold Ore", 20, range(701, 851)],       # 15% kans
-    ["Platinum Ore", 100, range(851, 951)],  # 10% kans
-    ["Diamond Ore", 500, range(951, 981)],   # 3% kans
-    ["Mythril Ore", 2000, range(981, 991)],  # 1% kans
-    ["Adamantite Ore", 10000, range(991, 996)], # 0.5% kans
-    ["Orichalcum Ore", 50000, range(996, 999)], # 0.3% kans
-    ["Titanium Ore", 200000, range(999, 1000)], # 0.1% kans
-    ["Uranium Ore", 1000000, range(1000, 1001)] # 0.1% kans
+    ["Copper Ore", 1, range(1, 401)],          # 40% chance
+    ["Silver Ore", 5, range(401, 701)],        # 30% chance
+    ["Gold Ore", 20, range(701, 851)],         # 15% chance
+    ["Platinum Ore", 100, range(851, 951)],    # 10% chance
+    ["Diamond Ore", 500, range(951, 981)],     # 3% chance
+    ["Mythril Ore", 2000, range(981, 991)],    # 1% chance
+    ["Adamantite Ore", 10000, range(991, 996)], # 0.5% chance
+    ["Orichalcum Ore", 50000, range(996, 999)], # 0.3% chance
+    ["Titanium Ore", 200000, range(999, 1000)], # 0.1% chance
+    ["Uranium Ore", 1000000, range(1000, 1001)] # 0.1% chance
 ]
-# Voor testen: laat zien hoeveel kans elke ore heeft
+
+# For testing: show the chance of each ore
 if __name__ == "__main__":
     for ore in rare_ores:
-        print(f"{ore[0]}: Waarde={ore[1]}, Kans={ore[2]}%")
+        print(f"{ore[0]}: Value={ore[1]}, Chance={ore[2]}%")
