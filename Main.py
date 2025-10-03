@@ -4,6 +4,8 @@ from save_load import save_game, load_game
 from money import money_per_click
 from special_ores import rare_ores
 
+import random
+
 # --- Starting values ---
 money = 0.0
 RP = 0
@@ -48,10 +50,12 @@ while True:
         money += earned
         print(f"You earned {round(earned,2)} gold!\n")
 
-        import random
-        roll = random.randint(1, 1000)
+        # --- Ore system using percentages ---
+        roll = random.uniform(0, 100)  # percentage roll
+        cumulative = 0
         for ore in rare_ores:
-            if roll in ore[2]:
+            cumulative += ore[2]  # ore[2] is chance in %
+            if roll <= cumulative:
                 print(f"You found {ore[0]}! Value: {ore[1]} gold.\n")
                 money += ore[1]
                 break
@@ -77,9 +81,11 @@ while True:
             # Apply rebirth bonuses
             money += 500 * rebirth_upgrades["Auto Start Bonus"][0]
             drills[0][4] += rebirth_upgrades["Team Boost"][0]
-            # Ore Luck level
+
+            # Example: Ore Luck rebirth bonus (currently placeholder)
             ore_luck_level = rebirth_upgrades["Ore Luck"][0]
-            extra_chance = int(ore_luck_level * 5)  # each level = +0.5% chance
+            extra_chance = ore_luck_level * 0.5  # +0.5% per level
+            # 👉 Here you could modify `rare_ores` chances dynamically if you want
 
             print(f"Rebirth complete! RP={RP}\n")
         else:
