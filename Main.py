@@ -8,9 +8,9 @@ from special_ores import rare_ores
 money = 0.0
 RP = 0
 
-# Starting bonuses (Auto Start Bonus + Team Boost)
+# Starting bonuses (Auto Start Bonus + Start with drill)
 money += 500 * rebirth_upgrades["Auto Start Bonus"][0]
-drills[0][4] += rebirth_upgrades["Team Boost"][0]
+drills[0][4] += rebirth_upgrades["Start with drill"][0]
 
 print("Welcome to Mine Simulator with Rebirth upgrades!")
 print("Enter = earn money, 1-10 = buy drills, r=rebirth, u=spend RP, s=save, l=load, q=quit\n")
@@ -76,7 +76,7 @@ while True:
                 drill[5] = drill[1]  # reset to base price
             # Apply rebirth bonuses
             money += 500 * rebirth_upgrades["Auto Start Bonus"][0]
-            drills[0][4] += rebirth_upgrades["Team Boost"][0]
+            drills[0][4] += rebirth_upgrades["Start with drill"][0]
             # Ore Luck level
             ore_luck_level = rebirth_upgrades["Ore Luck"][0]
             extra_chance = int(ore_luck_level * 5)  # each level = +0.5% chance
